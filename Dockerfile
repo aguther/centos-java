@@ -6,7 +6,9 @@ LABEL maintainer="Andreas Guther <andreas@guther.net>" \
       java="java-1.8.0-openjdk"
 
 # add non-root user and install java
-RUN yum -y install java-1.8.0-openjdk.x86_64 \
+RUN yum -y update \
+    && yum -y install java-1.8.0-openjdk.x86_64 \
+    && rm -rf /var/cache/yum \
     && rm -f /tmp/*.rpm \
     && groupadd -r app \
     && useradd -r -g app app \
